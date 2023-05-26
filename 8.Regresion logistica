@@ -1,0 +1,12 @@
+from sklearn.linear_model import LogisticRegression
+
+# Datos de entrenamiento
+X = [[1], [2], [3], [4], [5]]
+Y = [0, 0, 1, 1, 1]
+
+# Crear una regresión logística
+regression = LogisticRegression().fit(X, Y)
+
+# Hacer predicciones
+print(regression.predict([[6]])) # [1]
+print(regression.predict([[2.5]])) # [0]
