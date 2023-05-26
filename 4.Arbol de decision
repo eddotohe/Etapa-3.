@@ -1,0 +1,20 @@
+# Importamos las bibliotecas necesarias
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+
+# Cargamos el conjunto de datos de iris
+iris = load_iris()
+
+# Dividimos los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, random_state=42)
+
+# Creamos el clasificador de árbol de decisiones
+clf = DecisionTreeClassifier(random_state=42)
+
+# Entrenamos el clasificador en los datos de entrenamiento
+clf.fit(X_train, y_train)
+
+# Evaluamos el rendimiento del clasificador en los datos de prueba
+score = clf.score(X_test, y_test)
+print(f"Puntuación del árbol de decisiones: {score}")
