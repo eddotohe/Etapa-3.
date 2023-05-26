@@ -1,0 +1,36 @@
+def calcular_promedio(lista):
+    # Validar si la lista está vacía
+    if not lista:
+        raise ValueError("La lista está vacía.")
+
+    # Validar que todos los elementos de la lista sean números
+    if not all(isinstance(num, (int, float)) for num in lista):
+        raise ValueError("La lista contiene elementos no numéricos.")
+
+    # Calcular el promedio con mayor precisión
+    suma = sum(lista)
+    promedio = suma / len(lista)
+
+    return promedio
+
+# Ejemplo de uso del algoritmo
+numeros = []
+
+# Solicitar al usuario ingresar los números hasta que ingrese "fin"
+while True:
+    numero = input("Ingresa un número (ingresa 'fin' para terminar): ")
+    if numero == "fin":
+        break
+    try:
+        numero = float(numero)
+        numeros.append(numero)
+    except ValueError:
+        print("Error: Ingresa un número válido.")
+
+try:
+    # Calcular el promedio utilizando el algoritmo
+    promedio = calcular_promedio(numeros)
+    # Imprimir el resultado
+    print("El promedio es:", promedio)
+except ValueError as error:
+    print("Error:", str(error))
