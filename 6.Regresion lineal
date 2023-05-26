@@ -1,0 +1,17 @@
+"""modelo de Arboles de decision y clasificacion (CART)"""
+
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+
+# Ejemplo de datos de entrenamiento
+X = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+y = np.array([0, 1, 0])
+
+# Creación del modelo CART
+model = DecisionTreeClassifier()
+model.fit(X, y)
+
+# Ejemplo de predicción
+X_test = np.array([[10, 11, 12]])
+prediction = model.predict(X_test)
+print(prediction) # [0]
