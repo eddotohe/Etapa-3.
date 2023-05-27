@@ -1,36 +1,44 @@
-def calcular_promedio(lista):
-    # Validar si la lista está vacía
-    if not lista:
-        raise ValueError("La lista está vacía.")
+def calcular_balance_general(activos, pasivos, patrimonio):
+    # Calcular el total de activos
+    total_activos = sum(activos)
 
-    # Validar que todos los elementos de la lista sean números
-    if not all(isinstance(num, (int, float)) for num in lista):
-        raise ValueError("La lista contiene elementos no numéricos.")
+    # Calcular el total de pasivos
+    total_pasivos = sum(pasivos)
 
-    # Calcular el promedio con mayor precisión
-    suma = sum(lista)
-    promedio = suma / len(lista)
+    # Calcular el patrimonio neto
+    patrimonio_neto = patrimonio - total_pasivos
 
-    return promedio
+    return total_activos, total_pasivos, patrimonio_neto
+
+# Función para elaborar el informe contable
+def elaborar_informe(balance_general):
+    total_activos, total_pasivos, patrimonio_neto = balance_general
+
+    # Elaborar el informe contable
+    informe = """
+    INFORME CONTABLE
+    
+    Balance General
+    ----------------------
+    Activos:             ${:.2f}
+    Pasivos:             ${:.2f}
+    Patrimonio Neto:     ${:.2f}
+    ----------------------
+    """.format(total_activos, total_pasivos, patrimonio_neto)
+
+    return informe
 
 # Ejemplo de uso del algoritmo
-numeros = []
+activos = [15000, 20000, 35000]
+pasivos = [10000, 8000, 15000]
+patrimonio = 50000
 
-# Solicitar al usuario ingresar los números hasta que ingrese "fin"
-while True:
-    numero = input("Ingresa un número (ingresa 'fin' para terminar): ")
-    if numero == "fin":
-        break
-    try:
-        numero = float(numero)
-        numeros.append(numero)
-    except ValueError:
-        print("Error: Ingresa un número válido.")
+# Calcular el balance general utilizando el algoritmo contable
+balance_general = calcular_balance_general(activos, pasivos, patrimonio)
 
-try:
-    # Calcular el promedio utilizando el algoritmo
-    promedio = calcular_promedio(numeros)
-    # Imprimir el resultado
-    print("El promedio es:", promedio)
-except ValueError as error:
-    print("Error:", str(error))
+# Elaborar el informe contable con los resultados obtenidos
+informe_contable = elaborar_informe(balance_general)
+
+# Imprimir el informe contable
+print(informe_contable)
+
